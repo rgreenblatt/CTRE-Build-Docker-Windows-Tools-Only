@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <FrameworkRegistryBase Condition=" '$(FrameworkRegistryBase)' == '' ">Software\Microsoft\.NETMicroFramework</FrameworkRegistryBase>
+    <TargetFrameworkIdentifier Condition=" '$(TargetFrameworkIdentifier)' == '' ">.NETMicroFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion Condition=" '$(TargetFrameworkVersion)' == '' ">v4.4</TargetFrameworkVersion>
+    <AssemblyFoldersSuffix Condition=" '$(AssemblyFoldersSuffix)' == '' ">AssemblyFoldersEx</AssemblyFoldersSuffix>
+    <GenerateManifests>true</GenerateManifests>
+    <TargetCompactFramework>true</TargetCompactFramework>
+    <!-- override Roslyn compiler(s) as it doesn't support runtimes without generics-->
+    <VbcToolExe>vbc.exe</VbcToolExe>
+    <VbcToolPath>$([MSBuild]::GetRegistryValueFromView('HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework', 'InstallRoot', null, RegistryView.Registry32))v4.0.30319</VbcToolPath>
+  </PropertyGroup>
+  
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="Device.targets" />
+</Project>
