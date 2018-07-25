@@ -42,8 +42,6 @@ RUN Start-Process .\java.exe -wait -argumentlist '/s INSTALL_SILENT=Enable AUTO_
 ADD javaEnv.ps1 javaEnv.ps1
 RUN .\javaEnv.ps1
 
-ADD [".gradle", "C:/Users/ContainerAdministrator/.gradle"]
-
 RUN Remove-Item TEMP\vs_buildtools.exe
 RUN Remove-Item setpath.ps1
 RUN Remove-Item CTRE.exe
@@ -51,12 +49,6 @@ RUN Remove-Item NSIS.reg
 RUN Remove-Item setpathNSIS.ps1
 RUN Remove-Item java.exe
 RUN Remove-Item javaEnv.ps1
-
-
-
-
-
-
 
 # Start developer command prompt with any other commands specified.
 #ENTRYPOINT C:\BuildTools\Common7\Tools\VsDevCmd.bat &&
